@@ -96,7 +96,7 @@ function App() {
     <div className="app">
       <header className="header">
         <div className="brand">
-          <img src="/logo.svg" alt="" className="brand-logo" />
+          <img src="/logo.svg" alt="Ilanga sun logo" className="brand-logo" />
           <div>
             <h1 className="brand-name">{APP_NAME}</h1>
             <p className="brand-model">Running {MODEL_NAME} on your computer</p>
