@@ -1,2 +1,3 @@
+# Folders and files Git should not upload
 node_modules
 dist
