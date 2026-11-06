@@ -1,3 +1,4 @@
+// Sends the prompt to Ollama and works out duration and tokens per second
 import {
   OLLAMA_URL,
   MODEL_NAME,
