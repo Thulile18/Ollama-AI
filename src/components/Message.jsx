@@ -1,3 +1,4 @@
+// Shows one chat bubble, plus the duration and tokens per second for AI replies
 // Shows one chat message.
 // User messages sit on the right. AI messages sit on the left and
 // show the duration and tokens per second underneath.
