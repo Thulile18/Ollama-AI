@@ -16,7 +16,7 @@ Ilanga (Zulu for "sun") is a simple React chat app that talks to an AI model run
 - React 18
 - Vite
 - Ollama (`/api/generate` endpoint)
-- Model: `qwen2.5:0.5b` (under 1 GB)
+- Model: `qwen2.5:0.5b` (397 MB, under the 1 GB limit)
 
 ## Getting Started
 
@@ -42,7 +42,7 @@ npm run dev
 Open the address shown in the terminal (usually http://localhost:5173).
 
 ## Configuration
-All settings are in `src/config.js`: the Ollama URL, model name, app name, user name, localStorage key and the system message. If you use a different model, change `MODEL_NAME` to match the name shown by `ollama list`.
+All settings are in `src/config.js`: the Ollama URL, model name, app name, user name, localStorage key and the system message. Nothing is hardcoded in the components. If you use a different model, change `MODEL_NAME` to match the name shown by `ollama list`.
 
 ## How It Works
 The app sends a POST request to `http://localhost:11434/api/generate` with this body:
@@ -50,19 +50,31 @@ The app sends a POST request to `http://localhost:11434/api/generate` with this 
 ```json
 {
   "model": "qwen2.5:0.5b",
-  "system": "You are Ilanga, a helpful and friendly AI assistant...",
+  "system": "You are Ilanga, a helpful and friendly AI assistant helping Thulile...",
   "prompt": "the user's message",
   "stream": false
 }
 ```
 
+The `system` field tells the AI its name, its purpose and who it is talking to.
+
 Ollama returns the answer along with timing data in nanoseconds:
 - **Duration** = `total_duration` converted to seconds
 - **Tokens per second** = `eval_count` divided by `eval_duration` (converted to seconds)
 
+### Chat history
+Every time the chat changes, the messages are saved to localStorage. When the page loads, they are read back, so the conversation is still there after a refresh. "Clear chat" empties it.
+
+## Logo and Favicon
+The logo (`public/logo.svg`) is a sun shaped like a chat bubble, since Ilanga means sun in Zulu and this is a chat app. It shows in the header and on the welcome screen.
+
+The favicon (`public/favicon.svg`) is a separate sunrise icon, linked in `index.html`, that shows in the browser tab.
+
 ## Project Structure
 ```
+index.html               page shell, favicon link and title
 src/
+  main.jsx               starts the React app
   config.js              all settings and the system message
   ollama.js              sends the request to Ollama and calculates timings
   App.jsx                chat state, localStorage, layout
@@ -73,13 +85,10 @@ public/
   logo.svg               app logo
 ```
 
-## Known Limitation
-The `/api/generate` endpoint only receives the latest prompt, so the AI does not remember earlier messages. The saved history is for display only.
-## Logo and Favicon
-The logo (public/logo.svg) shows in the header and on the welcome screen. The favicon (public/favicon.svg) is linked in index.html and shows in the browser tab. Both are SVG files of a sun, since Ilanga means sun in Zulu.
-
 ## Testing
-Sent a prompt and saw the spinner, then the reply with the duration and tokens per second. Refreshed the page and the chat history stayed.
+- Sent a prompt and saw the spinner, then the reply with the duration and tokens per second underneath.
+- Refreshed the page and the chat history stayed.
+- Asked "who are you?" to check the system message. The AI used its name, Ilanga.
 
-## Troubleshooting
-If you see "ollama: command not found", install Ollama from ollama.com/download/windows, then close and reopen VS Code before running ollama pull.
+## Known Limitations
+- The `/api/generate` endpoint only receives the latest prompt, so the AI
