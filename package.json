@@ -2,6 +2,7 @@
   "name": "ilanga-chat",
   "private": true,
   "version": "1.0.0",
+  "description": "Ilanga - a local AI chat built with React and Ollama",
   "type": "module",
   "scripts": {
     "dev": "vite",
