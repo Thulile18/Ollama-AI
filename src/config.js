@@ -1,3 +1,4 @@
+// Settings for the whole app: Ollama URL, model name, names and system message
 // All of the app's settings live in this one file.
 // To change the model, the names or the storage key, edit it here
 // and nothing else in the code needs to change.
