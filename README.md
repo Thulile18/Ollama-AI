@@ -80,3 +80,6 @@ The logo (public/logo.svg) shows in the header and on the welcome screen. The fa
 
 ## Testing
 Sent a prompt and saw the spinner, then the reply with the duration and tokens per second. Refreshed the page and the chat history stayed.
+
+## Troubleshooting
+If you see "ollama: command not found", install Ollama from ollama.com/download/windows, then close and reopen VS Code before running ollama pull.
