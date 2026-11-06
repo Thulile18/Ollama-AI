@@ -75,3 +75,5 @@ public/
 
 ## Known Limitation
 The `/api/generate` endpoint only receives the latest prompt, so the AI does not remember earlier messages. The saved history is for display only.
+## Logo and Favicon
+The logo (public/logo.svg) shows in the header and on the welcome screen. The favicon (public/favicon.svg) is linked in index.html and shows in the browser tab. Both are SVG files of a sun, since Ilanga means sun in Zulu.
