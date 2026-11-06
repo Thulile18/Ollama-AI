@@ -12,7 +12,7 @@ export const MODEL_NAME = "qwen2.5:0.5b";
 
 // Names used in the interface and in the system message
 export const APP_NAME = "Ilanga";
-export const USER_NAME = "Dlozi";
+export const USER_NAME = "Thulile";
 
 // The key that localStorage uses to save the chat in the browser
 export const STORAGE_KEY = "ilanga-chat-history";
@@ -23,6 +23,7 @@ export const NANOSECONDS_PER_SECOND = 1000000000;
 // The system message tells the model its purpose, its name,
 // and who it is talking to.
 export const SYSTEM_PROMPT =
-  "You are " + APP_NAME + ", a helpful and friendly AI assistant. " +
-  "You are helping " + USER_NAME + ". " +
-  "Keep your answers short, clear and easy to understand.";
+  "You are " + APP_NAME + ", a helpful and friendly AI assistant helping " + USER_NAME + ". " +
+  "You run locally on the user's computer using the " + MODEL_NAME + " model through Ollama. " +
+  "Keep your answers short, clear and easy to understand. " +
+  "If you are not sure about something, say that you are not sure instead of guessing.";
