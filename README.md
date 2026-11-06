@@ -1,31 +1,77 @@
-# Ilanga - Local AI Chat (React + Ollama)
+# Ilanga - Local AI Chat
 
-Ilanga is the Zulu word for "sun". This app is a simple chat interface
-that talks to a model running on your own computer through Ollama.
+Ilanga (Zulu for "sun") is a simple React chat app that talks to an AI model running locally on my own computer through [Ollama](https://ollama.com). No cloud service or API key is needed.
 
-## 1. Install Ollama and download a model
+## Features
+- Chat interface where my messages appear on the right and the AI's replies on the left
+- Loading spinner while the AI is generating a reply
+- Total duration and tokens per second shown under every AI reply
+- System message that gives the AI a name, a purpose and the name of the user
+- Chat history saved in localStorage, so it stays after a page refresh
+- "Clear chat" button to delete the saved history
+- Error message if Ollama is not running or the model is missing
+- Custom logo and favicon
+
+## Tech Used
+- React 18
+- Vite
+- Ollama (`/api/generate` endpoint)
+- Model: `qwen2.5:0.5b` (under 1 GB)
+
+## Getting Started
+
+### 1. Install Ollama and download a model
 1. Install Ollama for Windows: https://ollama.com/download/windows
-2. Pick a model under 1 GB from https://ollama.com/library
-3. Download it, for example:  `ollama pull qwen2.5:0.5b`
-4. Check it with:  `ollama list`
+2. Download the model:
+   ```
+   ollama pull qwen2.5:0.5b
+   ```
+3. Check that it is installed:
+   ```
+   ollama list
+   ```
 
-## 2. Run the app
-You need Node.js installed (https://nodejs.org).
+### 2. Run the app
+Node.js is required (https://nodejs.org).
 
-    npm install
-    npm run dev
+```
+npm install
+npm run dev
+```
 
 Open the address shown in the terminal (usually http://localhost:5173).
 
-## 3. Change settings
-Everything configurable is in `src/config.js`: the model name, your name,
-the app name, the Ollama URL and the localStorage key.
-If you pull a different model, change `MODEL_NAME` to match `ollama list`.
+## Configuration
+All settings are in `src/config.js`: the Ollama URL, model name, app name, user name, localStorage key and the system message. If you use a different model, change `MODEL_NAME` to match the name shown by `ollama list`.
 
-## Project structure
-- `src/config.js` - all settings and the system message
-- `src/ollama.js` - sends the request to Ollama, calculates duration and tokens/sec
-- `src/App.jsx` - chat state, localStorage saving/loading, layout
-- `src/components/Message.jsx` - one chat bubble
-- `src/App.css` - styling
-- `public/favicon.svg`, `public/logo.svg` - favicon and logo
+## How It Works
+The app sends a POST request to `http://localhost:11434/api/generate` with this body:
+
+```json
+{
+  "model": "qwen2.5:0.5b",
+  "system": "You are Ilanga, a helpful and friendly AI assistant...",
+  "prompt": "the user's message",
+  "stream": false
+}
+```
+
+Ollama returns the answer along with timing data in nanoseconds:
+- **Duration** = `total_duration` converted to seconds
+- **Tokens per second** = `eval_count` divided by `eval_duration` (converted to seconds)
+
+## Project Structure
+```
+src/
+  config.js              all settings and the system message
+  ollama.js              sends the request to Ollama and calculates timings
+  App.jsx                chat state, localStorage, layout
+  App.css                styling
+  components/Message.jsx one chat bubble
+public/
+  favicon.svg            favicon
+  logo.svg               app logo
+```
+
+## Known Limitation
+The `/api/generate` endpoint only receives the latest prompt, so the AI does not remember earlier messages. The saved history is for display only.
