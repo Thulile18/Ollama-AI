@@ -114,7 +114,7 @@ function App() {
       <main className="chat">
         {messages.length === 0 && !isLoading && (
           <div className="empty-state">
-            <img src="/logo.svg" alt="" className="empty-logo" />
+            <img src="/logo.svg" alt="Ilanga sun logo" className="empty-logo" />
             <h2>Hi {USER_NAME}, what can I help with?</h2>
             <p>Type a message below to start chatting with {APP_NAME}.</p>
           </div>
