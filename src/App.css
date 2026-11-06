@@ -258,3 +258,7 @@ body {
     animation-duration: 2s;
   }
 }
+
+.brand-logo {
+  flex-shrink: 0; /* keeps the logo from squashing on small screens */
+}
