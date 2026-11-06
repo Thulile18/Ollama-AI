@@ -142,7 +142,7 @@ function App() {
           value={input}
           onChange={(event) => setInput(event.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder={"Message " + APP_NAME}
+          placeholder={"Ask " + APP_NAME + " anything"}
           rows={1}
           disabled={isLoading}
         />
