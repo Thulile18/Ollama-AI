@@ -25,4 +25,4 @@ export const NANOSECONDS_PER_SECOND = 1000000000;
 export const SYSTEM_PROMPT =
   "You are " + APP_NAME + ", a helpful and friendly AI assistant. " +
   "You are helping " + USER_NAME + ". " +
-  "Keep your answers clear and easy to understand.";
+  "Keep your answers short, clear and easy to understand.";
