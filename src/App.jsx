@@ -1,3 +1,4 @@
+// Main component: chat state, localStorage saving and loading, and the page layout
 import { useState, useEffect, useRef } from "react";
 import Message from "./components/Message.jsx";
 import { askOllama } from "./ollama.js";
