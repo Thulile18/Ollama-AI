@@ -1,13 +1,18 @@
-// Sends the prompt to Ollama and works out duration and tokens per second
+// SERVICE: talks to Ollama.
+// This file has no screen code. Its only job is to send a prompt to the
+// AI model running on this computer and bring the answer back.
+
 import {
   OLLAMA_URL,
   MODEL_NAME,
+  TEMPERATURE,
   SYSTEM_PROMPT,
   NANOSECONDS_PER_SECOND,
-} from "./config";
+} from "../config/settings";
+import type { OllamaApiResponse, OllamaReply } from "../types/ollama";
 
 // Sends one prompt to Ollama and returns the answer plus timing details.
-export async function askOllama(prompt) {
+export async function askOllama(prompt: string): Promise<OllamaReply> {
   const response = await fetch(OLLAMA_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -16,6 +21,7 @@ export async function askOllama(prompt) {
       system: SYSTEM_PROMPT,
       prompt: prompt,
       stream: false, // wait for the full answer instead of streaming it
+      options: { temperature: TEMPERATURE },
     }),
   });
 
@@ -23,12 +29,12 @@ export async function askOllama(prompt) {
     throw new Error("Ollama replied with status " + response.status);
   }
 
-  const data = await response.json();
+  const data: OllamaApiResponse = await response.json();
 
   // total_duration: the whole request, in nanoseconds
   const durationSeconds = data.total_duration / NANOSECONDS_PER_SECOND;
 
-  // eval_count: tokens generated. eval_duration: time spent generating them.
+  // eval_count: tokens written. eval_duration: time spent writing them.
   const generationSeconds = data.eval_duration / NANOSECONDS_PER_SECOND;
   let tokensPerSecond = 0;
   if (generationSeconds > 0) {
