@@ -57,7 +57,8 @@ body {
   padding: var(--space-md) var(--space-lg);
   background: linear-gradient(135deg, var(--navy), var(--navy-soft));
   color: var(--white);
-  border-bottom: 4px solid var(--sun); /* the amber accent, repeated below */
+  border-bottom: 4px solid var(--sun);
+  /* the amber accent, repeated below */
 }
 
 .brand {
@@ -113,13 +114,14 @@ body {
   padding: var(--space-lg);
   display: flex;
   flex-direction: column;
-  gap: var(--space-md); /* the same gap between every message */
+  gap: var(--space-md);
+  /* the same gap between every message */
 }
 
 /* ---------- Welcome message ---------- */
 .empty-state {
   margin: auto;
-  max-width: 340px;
+  max-width: 440px;
   text-align: center;
   color: var(--muted);
 }
@@ -182,7 +184,8 @@ body {
 .message-text {
   margin: 0;
   line-height: 1.6;
-  white-space: pre-wrap; /* keeps line breaks from the AI's answer */
+  white-space: pre-wrap;
+  /* keeps line breaks from the AI's answer */
   overflow-wrap: anywhere;
 }
 
