@@ -91,4 +91,5 @@ public/
 - Asked "who are you?" to check the system message. The AI used its name, Ilanga.
 
 ## Known Limitations
-- The `/api/generate` endpoint only receives the latest prompt, so the AI
+- The `/api/generate` endpoint only receives the latest prompt, so the AI.
+- Small local models can still give wrong answers. I lowered the temperature and told the AI to say when it is unsure, which reduced guessing but did not remove it.

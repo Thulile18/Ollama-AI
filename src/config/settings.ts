@@ -7,7 +7,7 @@ export const OLLAMA_URL = "http://localhost:11434/api/generate";
 
 // The model you downloaded with `ollama pull <model>`.
 // It must match a name shown by `ollama list`.
-export const MODEL_NAME = "qwen2.5:0.5b";
+export const MODEL_NAME = "gemma3:1b";
 
 // How random the AI's answers are. Lower = more focused and consistent,
 // higher = more creative. A low value means less guessing.
