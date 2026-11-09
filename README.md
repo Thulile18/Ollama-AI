@@ -49,10 +49,11 @@ The app sends a POST request to `http://localhost:11434/api/generate` with this 
 
 ```json
 {
-  "model": "qwen2.5:0.5b",
-  "system": "You are Ilanga, a helpful and friendly AI assistant helping Thulile...",
+  "model": "gemma3:1b",
+  "system": "Your name is Ilanga. You are an AI assistant running on the user's computer...",
   "prompt": "the user's message",
-  "stream": false
+  "stream": false,
+  "options": { "temperature": 0.2 }
 }
 ```
 
