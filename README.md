@@ -1,5 +1,9 @@
 # Ilanga - Local AI Chat
 
+Socialify Image
+
+<img src="https://socialify.git.ci/Thulile18/Ollama-AI/image?language=1&owner=1&name=1&stargazers=1&theme=Light" alt="Ollama-AI" width="640" height="320" />
+
 Ilanga (Zulu for "sun") is a simple React chat app that talks to an AI model running locally on my own computer through [Ollama](https://ollama.com). No cloud service or API key is needed.
 
 ## Features
